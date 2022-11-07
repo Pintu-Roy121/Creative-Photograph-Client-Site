@@ -1,11 +1,13 @@
+import { Toaster } from 'react-hot-toast';
+import { RouterProvider } from 'react-router-dom';
 import './App.css';
+import router from './Routes/Routes';
 
 function App() {
   return (
-    <div className="App">
-      <button className="btn btn-success">Success</button>
-      <button className="btn btn-warning">Warning</button>
-
+    <div data-theme="light">
+      <RouterProvider router={router}></RouterProvider>
+      <Toaster />
     </div>
   );
 }
