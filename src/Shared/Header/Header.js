@@ -23,7 +23,8 @@ const Header = () => {
     const menuItems = <>
         <li className='font-semibold'>
             <Link to='/'> Home</Link>
-            <Link to='/allservices'> All Services</Link>
+            <Link to='/allservices'>Services</Link>
+            <Link to='/reviews'>Reviews</Link>
             {
                 user?.uid &&
                 <>
@@ -36,7 +37,7 @@ const Header = () => {
 
 
     return (
-        <div className='bg-red-50 w-full'>
+        <div className='bg-red-50 w-full sticky top-0 z-50'>
             <div className="navbar w-11/12 mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">

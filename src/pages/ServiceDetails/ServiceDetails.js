@@ -1,12 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { PhotoView } from 'react-photo-view';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import Reviews from '../Reviews/Reviews';
 
 const ServiceDetails = () => {
+    const [reviews, setReviews] = useState([])
     const { user } = useContext(AuthContext);
-    const { title, image_url, price, rating, description } = useLoaderData();
+    const { title, image_url, price, rating, description, _id } = useLoaderData();
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/reviews/${_id}`)
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data);
+                setReviews(data);
+            })
+    }, [_id])
+
 
 
     return (
@@ -25,16 +36,23 @@ const ServiceDetails = () => {
                     <div className='absolute top-0 right-5'>
                         {
                             user?.uid ?
-                                <Link to='/addreview'>
+                                <Link to={`/addreview/${_id}`}>
                                     <button className="btn btn-sm btn-outline btn-info">Add a Review</button>
                                 </Link>
                                 :
-                                <Link to='/addreview'>
+                                <Link to={`/addreview/${_id}`}>
                                     <button className="btn btn-sm btn-outline btn-info">Please Login to Add Review</button>
                                 </Link>
                         }
                     </div>
-                    <Reviews></Reviews>
+                    <div>
+                        {
+                            reviews.map(review => <Reviews
+                                key={_id}
+                                review={review}
+                            ></Reviews>)
+                        }
+                    </div>
                 </div>
             </div>
         </div>
