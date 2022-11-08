@@ -29,7 +29,7 @@ const ServiceDetails = () => {
                                     <button className="btn btn-sm btn-outline btn-info">Add a Review</button>
                                 </Link>
                                 :
-                                <Link to='/login'>
+                                <Link to='/addreview'>
                                     <button className="btn btn-sm btn-outline btn-info">Please Login to Add Review</button>
                                 </Link>
                         }

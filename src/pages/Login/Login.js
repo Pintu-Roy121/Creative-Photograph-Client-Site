@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider';
@@ -9,6 +9,10 @@ const Login = () => {
     const [error, setError] = useState('')
     const { Login, GoogleLogin } = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
+    console.log(location);
+    let from = location.state?.from?.pathname || "/";
+    console.log(from);
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -19,9 +23,8 @@ const Login = () => {
 
         Login(email, password)
             .then(result => {
-                // const user = result.user;
-                navigate('/')
                 form.reset('')
+                navigate(from, { replace: true })
             })
             .catch(error => {
                 setError(error.message)
@@ -36,7 +39,7 @@ const Login = () => {
             .then(result => {
                 console.log(result.user);
                 toast.success('Login Successful')
-                navigate('/')
+                navigate(from, { replace: true })
             })
             .catch(error => {
                 setError(error.message)

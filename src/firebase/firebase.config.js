@@ -10,7 +10,7 @@ const firebaseConfig = {
     // projectId: process.env.REACT_APP_projectId,
     // storageBucket: process.env.REACT_APP_storageBucket,
     // messagingSenderId: process.env.REACT_APP_messagingSenderId,
-    // appId: process.env.REACT_APP_appId,
+    // appId: process.env.REACT_APP_appId
 
     apiKey: "AIzaSyDvIaqagjrFDE5B_Ek4dZNhwYuRP-TCMuY",
     authDomain: "creative-photograph.firebaseapp.com",
