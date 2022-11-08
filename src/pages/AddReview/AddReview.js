@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const AddReview = () => {
     const { user } = useContext(AuthContext);
     const { _id, title } = useLoaderData();
+    const navigate = useNavigate();
 
 
     const handleSubmit = (event) => {
@@ -48,7 +49,8 @@ const AddReview = () => {
             .then(data => {
                 if (data.insertedId) {
                     form.reset();
-                    toast.success('Review add successful')
+                    toast.success('Review add successful');
+                    navigate('/allservices')
                 }
             })
 

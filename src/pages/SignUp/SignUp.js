@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const SignUp = () => {
     const { user, createUser } = useContext(AuthContext);
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
 
     const handleRegister = event => {
@@ -17,13 +18,11 @@ const SignUp = () => {
 
         createUser(email, password)
             .then(result => {
-                const user = result.user;
-                console.log(user);
-                form.reseta();
+                form.reset();
+                navigate('/')
             })
             .catch(error => setError(error.message))
     }
-    console.log(user);
 
     return (
         <div className="hero my-10 w-full">

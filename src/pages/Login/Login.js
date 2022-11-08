@@ -10,9 +10,7 @@ const Login = () => {
     const { Login, GoogleLogin } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
-    console.log(location);
     let from = location.state?.from?.pathname || "/";
-    console.log(from);
 
     const handleSubmit = event => {
         event.preventDefault();

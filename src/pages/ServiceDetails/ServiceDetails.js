@@ -13,7 +13,6 @@ const ServiceDetails = () => {
         fetch(`http://localhost:5000/reviews/${_id}`)
             .then(res => res.json())
             .then(data => {
-                // console.log(data);
                 setReviews(data);
             })
     }, [_id])
@@ -45,10 +44,10 @@ const ServiceDetails = () => {
                                 </Link>
                         }
                     </div>
-                    <div>
+                    <div className='flex flex-col gap-5'>
                         {
                             reviews.map(review => <Reviews
-                                key={_id}
+                                key={review._id}
                                 review={review}
                             ></Reviews>)
                         }
