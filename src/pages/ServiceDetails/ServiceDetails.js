@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { PhotoView } from 'react-photo-view';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
-import Reviews from './Reviews/Reviews';
+import Reviews from '../Reviews/Reviews';
 
 const ServiceDetails = () => {
     const { user } = useContext(AuthContext);
@@ -19,9 +19,9 @@ const ServiceDetails = () => {
                     <p>Rating: {rating}</p>
                     <p className='text-right'>Price:$ {price}</p>
                 </div>
-                <hr className='border border-t-2 mt-24 border-sky-400' />
+                <hr className='border border-t-2 mt-24 mb-10 border-sky-400' />
                 <div className='relative'>
-                    <h1 className='text-2xl text-center font-bold underline mb-20'>All Reviews</h1>
+                    <h1 className='text-xl md:text-2xl text-center font-bold underline mb-14'>All Reviews</h1>
                     <div className='absolute top-0 right-5'>
                         {
                             user?.uid ?

@@ -4,7 +4,7 @@ import { PhotoView } from 'react-photo-view';
 import { Link } from 'react-router-dom';
 
 const SingleService = ({ service }) => {
-    const { title, image_url, price, rating, description, id } = service;
+    const { title, image_url, price, rating, description, _id } = service;
     return (
         <div className="card card-compact bg-base-100 shadow-xl">
             <figure><PhotoView src={image_url}><img className='h-60 w-full cursor-pointer' src={image_url} alt="service" /></PhotoView></figure>
@@ -16,7 +16,7 @@ const SingleService = ({ service }) => {
                     <p className='text-right'>Price:$ {price}</p>
                 </div>
                 <div className="card-actions justify-end">
-                    <Link to={`/details/${id}`}>
+                    <Link to={`/details/${_id}`}>
                         <button className="btn btn-primary">View Details <FaArrowRight className='text-lg font-bold ml-4' /></button>
                     </Link>
                 </div>
