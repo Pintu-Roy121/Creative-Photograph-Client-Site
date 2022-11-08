@@ -1,29 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from '../../assets/logo.png';
-import { FaBars } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { FaBars, FaUserCheck } from "react-icons/fa";
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Header = () => {
+    const { user, Logout } = useContext(AuthContext);
+    const navigate = useNavigate()
 
 
+    const handleLogout = () => {
+        Logout()
+            .then(result => {
+                toast.success('Log out Successful')
+                navigate('/login')
+            })
+            .catch(error => console.log(error.message))
+
+    }
 
     const menuItems = <>
         <li className='font-semibold'>
             <Link to='/'> Home</Link>
+            <Link to='/allservices'> All Services</Link>
         </li>
-        {/* {
-            user?.uid ?
-                <li className='font-semibold'>
-                    <p className='font-bold'>{user?.email}</p>
-                    <Link onClick={handleLogout} to='/login'>Log Out</Link>
-                </li>
-                :
-                <li className='font-semibold'>
-                    <Link to='/login'>Login</Link>
-                </li>
-        } */}
-
     </>
+
 
     return (
         <div className='bg-red-50 w-full'>
@@ -45,7 +48,28 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a href='/' className="btn">Get started</a>
+                    {
+                        user?.uid ?
+                            <div className='font-bold flex items-center gap-4'>
+                                <p className='font-semibold'>{user?.email}</p>
+                                <Link onClick={handleLogout} to='/login'>Log Out</Link>
+                                <div className='tooltip tooltip-bottom' data-tip={user?.displayName ? user.displayName : 'No User Name'} >
+                                    {
+                                        user?.photoURL ?
+
+                                            < img className='w-8 h-8 rounded-full cursor-pointer ' src={user.photoURL} alt="" />
+
+                                            :
+                                            <FaUserCheck className='text-2xl cursor-pointer' />
+                                    }
+                                </div>
+                            </div>
+                            :
+                            <div className='font-bold flex gap-4'>
+                                <Link to='/login'>Login</Link>
+                                <Link to='/signup'>Register</Link>
+                            </div>
+                    }
                 </div>
             </div>
         </div>
