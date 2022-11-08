@@ -24,6 +24,13 @@ const Header = () => {
         <li className='font-semibold'>
             <Link to='/'> Home</Link>
             <Link to='/allservices'> All Services</Link>
+            {
+                user?.uid &&
+                <>
+                    <Link to='/myreviews'>My Reviews</Link>
+                    <Link to='/addservice'>Add service</Link>
+                </>
+            }
         </li>
     </>
 
