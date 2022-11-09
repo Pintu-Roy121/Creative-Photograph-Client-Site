@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../contexts/AuthProvider';
-import Review from '../Review/Review';
+import Reviews from '../Reviews/Reviews';
 
 const MyReviews = () => {
     const { user } = useContext(AuthContext);
@@ -18,7 +18,7 @@ const MyReviews = () => {
 
     const handleDelete = (id) => {
         console.log(id);
-        fetch(`http://localhost:5000/reviews/${id}`, {
+        fetch(`https://creative-photograph-server-pintu-roy121.vercel.app/reviews/${id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())
@@ -39,11 +39,11 @@ const MyReviews = () => {
             <p className='text-2xl font-bold text-center underline my-10'>Total Review :{reviews.length}</p>
             <div className='flex flex-col gap-5 w-4/5 mx-auto items-center'>
                 {
-                    reviews.map(review => <Review
+                    reviews.map(review => <Reviews
                         key={review._id}
                         review={review}
                         handleDelete={handleDelete}
-                    ></Review>)
+                    ></Reviews>)
                 }
             </div>
         </div>

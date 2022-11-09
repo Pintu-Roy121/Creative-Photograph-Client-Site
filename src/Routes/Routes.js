@@ -7,6 +7,7 @@ import Login from "../pages/Login/Login";
 import MyReviews from "../pages/MyReviews/MyReviews";
 import ServiceDetails from "../pages/ServiceDetails/ServiceDetails";
 import SignUp from "../pages/SignUp/SignUp";
+import UpdateReview from "../pages/UpdateReview/UpdateReview";
 import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -39,17 +40,22 @@ const router = createBrowserRouter([
             },
             {
                 path: '/myreviews',
-                element: <MyReviews></MyReviews>
+                element: <PrivateRoutes><MyReviews></MyReviews></PrivateRoutes>
             },
             {
                 path: '/addservice',
-                element: <AddService></AddService>
+                element: <PrivateRoutes><AddService></AddService></PrivateRoutes>
             },
             {
                 path: '/addreview/:id',
                 element: <PrivateRoutes><AddReview></AddReview></PrivateRoutes>,
                 loader: ({ params }) => fetch(`https://creative-photograph-server.vercel.app/service/${params.id}`)
             },
+            {
+                path: '/update/:id',
+                element: <UpdateReview></UpdateReview>,
+                loader: ({ params }) => fetch(`http://localhost:5000/review/${params.id}`)
+            }
         ]
     }
 ])

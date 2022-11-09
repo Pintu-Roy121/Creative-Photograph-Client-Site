@@ -48,7 +48,7 @@ const AddService = () => {
     return (
         <div className='my-14'>
             <form onSubmit={handleSubmit} className='bg-gray-300 w-4/5 mx-auto p-24 rounded-lg text-center'>
-                <h1 className='text-3xl font-bold'>Add New Service for your Extra Profession</h1>
+                <h1 className='text-3xl font-bold'>Add New Service for your Profession</h1>
                 <div className='grid grid-cols-1 lg:grid-cols-2 mx-auto gap-5 my-10'>
                     <input className="input input-bordered input-info w-full" type="text" name='title' placeholder='Add you service name' required />
                     <input className="input input-bordered input-info w-full" type="text" name='image' placeholder='Add your image URL' required />

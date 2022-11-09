@@ -1,27 +1,23 @@
 import React from 'react';
-import toast from 'react-hot-toast';
 import { FaStar } from 'react-icons/fa';
-import { PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import user from '../../assets/user.jpg'
 
-const Review = ({ review, handleDelete }) => {
-    const { _id, image, name, description, rating, title } = review;
+const Review = ({ review }) => {
+    const { image, name, description, rating, title } = review;
 
     return (
         <div className='flex flex-row'>
             <div className="card card-side ">
                 <figure>
-                    <PhotoView>
-                        <img className='rounded-full h-20 w-20 md:h-24 md:w-24 lg:h-40 lg:w-40' src={image ? image : user} alt="Movie" />
-                    </PhotoView>
+                    <img className='rounded-full h-20 w-20 md:h-24 md:w-24 lg:h-40 lg:w-40' src={image ? image : user} alt="Movie" />
                 </figure>
             </div>
             <div className="card-body w-full">
                 <h2 className="text-xl md:text-3xl font-bold">{name}</h2>
                 <h4 className="text-lg md:text-2xl font-semibold">{title}</h4>
                 <p className='md:text-base text-justify pr-32'>{description}</p>
-                <div className='flex gap-3 justify-between items-center'>
+                <div className='flex gap-3 items-center'>
                     <div>
                         <p className='text-lg font-bold'>Rating: {rating}</p>
                     </div>
@@ -31,10 +27,6 @@ const Review = ({ review, handleDelete }) => {
                         <FaStar className='text-lg text-amber-500' />
                         <FaStar className='text-lg text-amber-500' />
                         <FaStar className='text-lg text-amber-500' />
-                    </div>
-                    <div>
-                        <button onClick={() => handleDelete(_id)} className="btn btn-sm btn-outline btn-error mr-4">Delete comment</button>
-                        <button className="btn btn-sm btn-outline btn-success">Edit comment</button>
                     </div>
                 </div>
             </div>
