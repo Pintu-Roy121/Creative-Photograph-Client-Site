@@ -1,4 +1,4 @@
-import Blog from "../Blog/Blog";
+import Blog from "../pages/Blog/Blog";
 import Main from "../layout/Main/Main";
 import AddReview from "../pages/AddReview/AddReview";
 import AddService from "../pages/AddService/AddService";
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
             {
                 path: '/update/:id',
                 element: <PrivateRoutes><UpdateReview></UpdateReview></PrivateRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:5000/review/${params.id}`)
+                loader: ({ params }) => fetch(`https://creative-photograph-server.vercel.app/review/${params.id}`)
             }
         ]
     }

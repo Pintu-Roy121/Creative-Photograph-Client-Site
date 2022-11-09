@@ -37,7 +37,7 @@ const UpdateReview = () => {
 
         console.log(_id, review);
 
-        fetch(`http://localhost:5000/review/${_id}`, {
+        fetch(`https://creative-photograph-server.vercel.app/review/${_id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
