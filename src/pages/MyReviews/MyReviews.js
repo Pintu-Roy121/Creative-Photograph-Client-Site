@@ -11,7 +11,11 @@ const MyReviews = () => {
     useTitle('My-Reviews')
 
     useEffect(() => {
-        fetch(`https://creative-photograph-server.vercel.app/reviews?email=${user?.email}`)
+        fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('User-Token')}`
+            }
+        })
             .then(res => res.json())
             .then(data => {
                 setReviews(data);
@@ -19,7 +23,6 @@ const MyReviews = () => {
     }, [user?.email, refresh])
 
     const handleDelete = (id) => {
-        console.log(id);
         fetch(`https://creative-photograph-server-pintu-roy121.vercel.app/reviews/${id}`, {
             method: 'DELETE',
         })

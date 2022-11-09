@@ -15,25 +15,7 @@ const Login = () => {
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
 
-    if (loading) {
-        return <div className='h-32 my-24 relative'>
-            <div className='absolute left-1/2'>
-                <Oval
-                    height={40}
-                    width={40}
-                    color="#4fa94d"
-                    wrapperStyle={{}}
-                    wrapperClass=""
-                    visible={true}
-                    ariaLabel='oval-loading'
-                    secondaryColor="#4fa94d"
-                    strokeWidth={6}
-                    strokeWidthSecondary={6}
 
-                />
-            </div>
-        </div>
-    }
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -43,20 +25,6 @@ const Login = () => {
         const password = form.password.value;
 
         Login(email, password)
-            .then(result => {
-                form.reset('');
-                navigate(from, { replace: true });
-            })
-            .catch(error => {
-                setError(error.message)
-                console.log(error.message)
-            });
-    }
-
-
-    const googleLogin = () => {
-
-        GoogleLogin()
             .then(result => {
                 if (loading) {
                     return <div className='h-32 my-24 relative'>
@@ -77,6 +45,36 @@ const Login = () => {
                         </div>
                     </div>
                 }
+                const user = result.user;
+                const currentUser = {
+                    email: user.email
+                }
+
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('User-Token', data.token)
+                        form.reset('');
+                        navigate(from, { replace: true });
+                    })
+
+            })
+            .catch(error => {
+                setError(error.message)
+                console.log(error.message)
+            });
+    }
+
+
+    const googleLogin = () => {
+        GoogleLogin()
+            .then(result => {
                 toast.success('Login Successful')
                 navigate(from, { replace: true })
             })
