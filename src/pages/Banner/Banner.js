@@ -10,14 +10,14 @@ const Banner = () => {
                     <h1 className="mb-5 text-6xl w-full font-bold text-white">Welcome To Creative Photograph Zone</h1>
                     <h2 className='text-3xl font-semibold text-blue-400 italic underline'>Our services</h2>
                     <p className='text-2xl font-semibold mt-5'>
-                        <span className=' cursor-pointer hover:text-blue-300 duration-500'>Wedding | </span>
-                        <span className=' cursor-pointer hover:text-blue-300 duration-500'>Birthday | </span>
-                        <span className=' cursor-pointer hover:text-blue-300 duration-500'>Product | </span>
-                        <span className=' cursor-pointer hover:text-blue-300 duration-500'>Travel</span>
+                        <span className=' cursor-pointer hover:text-red-500 duration-500'>Wedding | </span>
+                        <span className=' cursor-pointer hover:text-red-500 duration-500'>Birthday | </span>
+                        <span className=' cursor-pointer hover:text-red-500 duration-500'>Product | </span>
+                        <span className=' cursor-pointer hover:text-red-500 duration-500'>Travel</span>
                         <br />
-                        <span className=' cursor-pointer hover:text-blue-300 duration-500'>Advertising | </span>
-                        <span className=' cursor-pointer hover:text-blue-300 duration-500'>Family | </span>
-                        <span className=' cursor-pointer hover:text-blue-300 duration-500'> Sports</span>
+                        <span className=' cursor-pointer hover:text-red-500 duration-500'>Advertising | </span>
+                        <span className=' cursor-pointer hover:text-red-500 duration-500'>Family | </span>
+                        <span className=' cursor-pointer hover:text-red-500 duration-500'> Sports</span>
                     </p>
                 </div>
             </div>

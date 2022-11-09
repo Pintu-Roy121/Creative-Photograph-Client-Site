@@ -1,7 +1,9 @@
 import React from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const AddService = () => {
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -21,7 +23,7 @@ const AddService = () => {
             description
         }
 
-        fetch('http://localhost:5000/services', {
+        fetch('https://creative-photograph-server.vercel.app/services', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -32,7 +34,8 @@ const AddService = () => {
             .then(data => {
                 if (data.insertedId) {
                     form.reset();
-                    toast.success('Service added succssful')
+                    toast.success('Service added succssful');
+                    navigate('/services')
                 }
             });
 
@@ -47,12 +50,12 @@ const AddService = () => {
             <form onSubmit={handleSubmit} className='bg-gray-300 w-4/5 mx-auto p-24 rounded-lg text-center'>
                 <h1 className='text-3xl font-bold'>Add New Service for your Extra Profession</h1>
                 <div className='grid grid-cols-1 lg:grid-cols-2 mx-auto gap-5 my-10'>
-                    <input className="input input-bordered input-info w-full" type="text" name='title' placeholder='Add you service name' />
-                    <input className="input input-bordered input-info w-full" type="text" name='image' placeholder='Add your image URL' />
+                    <input className="input input-bordered input-info w-full" type="text" name='title' placeholder='Add you service name' required />
+                    <input className="input input-bordered input-info w-full" type="text" name='image' placeholder='Add your image URL' required />
                     <input className="input input-bordered input-info w-full" type="number" name='rating' placeholder='Give you rating out of 5' />
-                    <input className="input input-bordered input-info w-full" type="number" name='price' placeholder='Price $' />
+                    <input className="input input-bordered input-info w-full" type="number" name='price' placeholder='Price $' required />
                 </div>
-                <textarea className="textarea textarea-info w-full h-40" name='description' placeholder="Add Your Descriptiom"></textarea>
+                <textarea className="textarea textarea-info w-full h-40" name='description' placeholder="Add Your Descriptiom" required></textarea>
                 <button className="btn btn-info my-8">Submit Your service</button>
             </form>
         </div>

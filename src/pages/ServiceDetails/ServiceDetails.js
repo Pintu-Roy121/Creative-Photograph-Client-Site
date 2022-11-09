@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { FaStar } from 'react-icons/fa';
 import { PhotoView } from 'react-photo-view';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
-import Reviews from '../Reviews/Reviews';
+import Review from '../Review/Review';
 
 const ServiceDetails = () => {
     const [reviews, setReviews] = useState([])
@@ -10,7 +11,7 @@ const ServiceDetails = () => {
     const { title, image_url, price, rating, description, _id } = useLoaderData();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews/${_id}`)
+        fetch(`https://creative-photograph-server.vercel.app/reviews/${_id}`)
             .then(res => res.json())
             .then(data => {
                 setReviews(data);
@@ -26,7 +27,18 @@ const ServiceDetails = () => {
                 <h2 className="card-title text-2xl font-bold">{title}</h2>
                 <p className='text-base text-justify'>{description}</p>
                 <div className='text-xl font-semibold flex px-16'>
-                    <p>Rating: {rating}</p>
+                    <div className='flex flex-col gap-3'>
+                        <div>
+                            <p className='text-lg font-bold'>Rating: {rating}</p>
+                        </div>
+                        <div className='flex gap-1'>
+                            <FaStar className='text-lg text-amber-500' />
+                            <FaStar className='text-lg text-amber-500' />
+                            <FaStar className='text-lg text-amber-500' />
+                            <FaStar className='text-lg text-amber-500' />
+                            <FaStar className='text-lg text-amber-500' />
+                        </div>
+                    </div>
                     <p className='text-right'>Price:$ {price}</p>
                 </div>
                 <hr className='border border-t-2 mt-24 mb-10 border-sky-400' />
@@ -46,10 +58,10 @@ const ServiceDetails = () => {
                     </div>
                     <div className='flex flex-col gap-5'>
                         {
-                            reviews.map(review => <Reviews
+                            reviews.map(review => <Review
                                 key={review._id}
                                 review={review}
-                            ></Reviews>)
+                            ></Review>)
                         }
                     </div>
                 </div>

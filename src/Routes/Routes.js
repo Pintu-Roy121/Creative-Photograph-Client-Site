@@ -21,13 +21,13 @@ const router = createBrowserRouter([
                 element: <Home></Home>
             },
             {
-                path: '/allservices',
+                path: '/services',
                 element: <AllServices></AllServices>
             },
             {
                 path: '/details/:id',
                 element: <ServiceDetails></ServiceDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/service/${params.id}`)
+                loader: ({ params }) => fetch(`https://creative-photograph-server.vercel.app/service/${params.id}`)
             },
             {
                 path: '/login',
@@ -48,7 +48,7 @@ const router = createBrowserRouter([
             {
                 path: '/addreview/:id',
                 element: <PrivateRoutes><AddReview></AddReview></PrivateRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:5000/service/${params.id}`)
+                loader: ({ params }) => fetch(`https://creative-photograph-server.vercel.app/service/${params.id}`)
             },
         ]
     }

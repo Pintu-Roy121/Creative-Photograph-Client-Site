@@ -23,7 +23,7 @@ const Header = () => {
     const menuItems = <>
         <li className='font-semibold'>
             <Link to='/'> Home</Link>
-            <Link to='/allservices'>Services</Link>
+            <Link to='/services'>Services</Link>
             {
                 user?.uid &&
                 <>

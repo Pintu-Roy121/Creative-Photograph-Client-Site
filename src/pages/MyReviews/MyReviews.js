@@ -1,18 +1,37 @@
 import React, { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../contexts/AuthProvider';
 import Review from '../Review/Review';
 
 const MyReviews = () => {
     const { user } = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
+    const [refresh, setRefresh] = useState(true);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`)
+        fetch(`https://creative-photograph-server.vercel.app/reviews?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setReviews(data);
             })
-    }, [user?.email])
+    }, [user?.email, refresh])
+
+    const handleDelete = (id) => {
+        console.log(id);
+        fetch(`http://localhost:5000/reviews/${id}`, {
+            method: 'DELETE',
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount) {
+                    toast.success('Delete Successful');
+                    setRefresh(!refresh)
+                }
+            })
+            .catch(error => {
+                console.log(error.message);
+            })
+    }
 
 
     return (
@@ -23,6 +42,7 @@ const MyReviews = () => {
                     reviews.map(review => <Review
                         key={review._id}
                         review={review}
+                        handleDelete={handleDelete}
                     ></Review>)
                 }
             </div>

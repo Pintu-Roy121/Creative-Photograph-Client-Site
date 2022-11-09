@@ -30,6 +30,7 @@ const AddReview = () => {
         }
 
         const review = {
+            title,
             name,
             image,
             rating,
@@ -38,7 +39,7 @@ const AddReview = () => {
             time,
             description
         }
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://creative-photograph-server.vercel.app/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -50,7 +51,7 @@ const AddReview = () => {
                 if (data.insertedId) {
                     form.reset();
                     toast.success('Review add successful');
-                    navigate('/allservices')
+                    navigate('/services')
                 }
             })
 
@@ -62,7 +63,7 @@ const AddReview = () => {
             <form onSubmit={handleSubmit} className='bg-gray-300 w-4/5 mx-auto p-24 rounded-lg text-center'>
                 <h1 className='text-3xl font-semibold'>Add Review: <span className='text-orange-600 font-bold'>{title}</span></h1>
                 <div className='flex flex-col gap-5 my-10'>
-                    <input className="input input-bordered input-info w-full" type="text" name='name' placeholder='Your Name' />
+                    <input className="input input-bordered input-info w-full" type="text" name='name' placeholder='Your Name' required />
                     <input className="input input-bordered input-info w-full" type="text" name='image' placeholder='Add your image URL' />
                     <input className="input input-bordered input-info w-full" type="number" name='rating' placeholder='Give you rating out of 5' />
                 </div>
