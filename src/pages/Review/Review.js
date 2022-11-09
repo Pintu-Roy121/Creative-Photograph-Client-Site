@@ -7,7 +7,7 @@ const Review = ({ review }) => {
     const { image, name, description, rating, title } = review;
 
     return (
-        <div className='flex flex-row'>
+        <div className='flex flex-row bg-gray-100 px-10 py-5 rounded-xl shadow-stone-600 shadow-lg'>
             <div className="card card-side ">
                 <figure>
                     <img className='rounded-full h-20 w-20 md:h-24 md:w-24 lg:h-40 lg:w-40' src={image ? image : user} alt="Movie" />
@@ -16,7 +16,7 @@ const Review = ({ review }) => {
             <div className="card-body w-full">
                 <h2 className="text-xl md:text-3xl font-bold">{name}</h2>
                 <h4 className="text-lg md:text-2xl font-semibold">{title}</h4>
-                <p className='md:text-base text-justify pr-20'>{description}</p>
+                <p className='md:text-base text-justify '>{description}</p>
                 <div className='flex gap-3 items-center'>
                     <div>
                         <p className='text-lg font-bold'>Rating: {rating}</p>

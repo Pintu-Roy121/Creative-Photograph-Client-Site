@@ -50,7 +50,7 @@ const Login = () => {
                     email: user.email
                 }
 
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://creative-photograph-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',
@@ -63,7 +63,6 @@ const Login = () => {
                         form.reset('');
                         navigate(from, { replace: true });
                     })
-
             })
             .catch(error => {
                 setError(error.message)
@@ -100,7 +99,7 @@ const Login = () => {
                 }
                 toast.success('Login Successful')
 
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://creative-photograph-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',

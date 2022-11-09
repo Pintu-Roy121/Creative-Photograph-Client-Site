@@ -49,7 +49,9 @@ const Header = () => {
                             {menuItems}
                         </ul>
                     </div>
-                    <img className='w-24' src={logo} alt="" />
+                    <Link to='/'>
+                        <img className='w-24' src={logo} alt="" />
+                    </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0 text-black">
@@ -59,7 +61,7 @@ const Header = () => {
                 <div className="navbar-end">
                     {
                         user?.uid ?
-                            <div className='font-bold flex items-center gap-4'>
+                            <div className='text-sm md:text-base font-bold flex items-center gap-4'>
                                 <p className='font-semibold'>{user?.email}</p>
                                 <Link onClick={handleLogout} to='/login'>Log Out</Link>
                                 <div className='tooltip tooltip-bottom' data-tip={user?.displayName ? user.displayName : 'No User Name'} >

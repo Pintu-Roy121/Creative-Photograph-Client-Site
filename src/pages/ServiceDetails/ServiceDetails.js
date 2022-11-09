@@ -14,7 +14,7 @@ const ServiceDetails = () => {
     const { title, image_url, price, rating, description, _id } = useLoaderData();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews/${_id}`)
+        fetch(`https://creative-photograph-server.vercel.app/reviews/${_id}`)
             .then(res => res.json())
             .then(data => {
                 setReviews(data);
@@ -59,7 +59,7 @@ const ServiceDetails = () => {
                                 </Link>
                         }
                     </div>
-                    <div className='flex flex-col gap-5 ml-10'>
+                    <div className='flex flex-col gap-8 mx-5'>
                         {
                             reviews.map(review => <Review
                                 key={review._id}

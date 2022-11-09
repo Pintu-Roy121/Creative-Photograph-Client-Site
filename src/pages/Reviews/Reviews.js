@@ -9,7 +9,7 @@ const Reviews = ({ review, handleDelete }) => {
 
 
     return (
-        <div className='flex flex-row'>
+        <div className='flex flex-row bg-gray-100 px-10 rounded-xl shadow-stone-600 shadow-lg'>
             <div className="card card-side ">
                 <figure>
                     <img className='rounded-full h-20 w-20 md:h-24 md:w-24 lg:h-40 lg:w-40' src={image ? image : profile} alt="Movie" />

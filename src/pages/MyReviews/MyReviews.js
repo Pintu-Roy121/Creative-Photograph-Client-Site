@@ -13,7 +13,7 @@ const MyReviews = () => {
     useTitle('My-Reviews')
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+        fetch(`https://creative-photograph-server.vercel.app/reviews?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('User-Token')}`
             }
@@ -36,33 +36,36 @@ const MyReviews = () => {
     }, [user?.email, refresh, Logout, navigate])
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/reviews/${id}`, {
-            method: 'DELETE',
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.deletedCount) {
-                    toast.success('Delete Successful');
-                    setRefresh(!refresh)
-                }
+        const agree = window.confirm('Do you want to Delete? ')
+        if (agree) {
+            fetch(`https://creative-photograph-server.vercel.app/reviews/${id}`, {
+                method: 'DELETE',
             })
-            .catch(error => {
-                console.log(error.message);
-            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount) {
+                        toast.success('Delete Successful');
+                        setRefresh(!refresh)
+                    }
+                })
+                .catch(error => {
+                    console.log(error.message);
+                })
+        } else {
+            toast.error('Good Decission!!!!')
+        }
     }
 
 
     return (
-        <div className='w-4/5 mx-auto my-12'>
-            <span>
-                {
-                    reviews ?
-                        <p className='text-2xl font-bold text-center underline my-10'>Total Review :{reviews.length}</p>
-                        :
-                        <p className='text-2xl font-bold text-center my-10'>No Review Were Added</p>
-                }
-            </span>
-            <div className='flex flex-col gap-5 w-4/5 mx-auto items-center'>
+        <div className='w-4/5 min-h-48 mx-auto'>
+            {
+                reviews?.length ?
+                    <p className='text-2xl font-bold text-center underline my-10'>Total Review :{reviews.length}</p>
+                    :
+                    <p className='text-2xl font-bold text-red-400 text-center my-10'>No Review Were Added ?...</p>
+            }
+            <div className='flex flex-col gap-12 w-4/5 mx-auto items-center'>
                 {
 
                     reviews.map(review => <Reviews
