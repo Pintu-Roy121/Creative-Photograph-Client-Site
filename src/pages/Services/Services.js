@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import SingleService from '../../SingleService/SingleService';
+import SingleService from '../SingleService/SingleService';
 
 
 const Services = () => {

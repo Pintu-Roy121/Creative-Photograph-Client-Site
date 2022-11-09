@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Oval } from 'react-loader-spinner';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useTitle from '../../hooks/useTitle';
-import SingleService from '../../SingleService/SingleService';
+import SingleService from '../SingleService/SingleService';
 
 const AllServices = () => {
     const [services, setServices] = useState([]);
