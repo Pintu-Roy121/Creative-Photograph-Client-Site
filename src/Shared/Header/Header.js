@@ -23,6 +23,7 @@ const Header = () => {
     const menuItems = <>
         <li className='font-semibold'>
             <Link to='/'> Home</Link>
+            <Link to='/blog'> Blog</Link>
             <Link to='/services'>Services</Link>
             {
                 user?.uid &&
@@ -64,7 +65,7 @@ const Header = () => {
                                     {
                                         user?.photoURL ?
 
-                                            < img className='w-8 h-8 rounded-full cursor-pointer ' src={user.photoURL} alt="" />
+                                            <img className='w-8 h-8 rounded-full cursor-pointer ' src={user?.photoURL} alt="profile" />
 
                                             :
                                             <FaUserCheck className='text-2xl cursor-pointer' />

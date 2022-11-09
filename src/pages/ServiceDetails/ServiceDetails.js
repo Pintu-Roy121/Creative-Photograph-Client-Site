@@ -3,11 +3,14 @@ import { FaStar } from 'react-icons/fa';
 import { PhotoView } from 'react-photo-view';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 import Review from '../Review/Review';
 
 const ServiceDetails = () => {
     const [reviews, setReviews] = useState([])
     const { user } = useContext(AuthContext);
+    useTitle('Details')
+
     const { title, image_url, price, rating, description, _id } = useLoaderData();
 
     useEffect(() => {
@@ -43,7 +46,7 @@ const ServiceDetails = () => {
                 </div>
                 <hr className='border border-t-2 mt-24 mb-10 border-sky-400' />
                 <div className='relative'>
-                    <h1 className='text-xl md:text-2xl text-center font-bold underline mb-14'>All Reviews</h1>
+                    <h1 className='text-xl md:text-2xl ml-12 font-bold underline mb-14'>Reviews</h1>
                     <div className='absolute top-0 right-5'>
                         {
                             user?.uid ?
@@ -56,7 +59,7 @@ const ServiceDetails = () => {
                                 </Link>
                         }
                     </div>
-                    <div className='flex flex-col gap-5'>
+                    <div className='flex flex-col gap-5 ml-10'>
                         {
                             reviews.map(review => <Review
                                 key={review._id}

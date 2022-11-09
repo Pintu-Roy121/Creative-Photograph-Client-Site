@@ -1,12 +1,14 @@
 import React from 'react';
 import toast from 'react-hot-toast';
 import { useLoaderData, useNavigate } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 
 const UpdateReview = () => {
     const review = useLoaderData()
     const navigate = useNavigate();
+    useTitle('Update-Review')
 
-    const { _id, name, image, description, email, rating } = review;
+    const { _id, name, title, image, description, email, rating } = review;
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -57,7 +59,7 @@ const UpdateReview = () => {
     return (
         <div className='my-14'>
             <form onSubmit={handleSubmit} className='bg-gray-300 w-4/5 mx-auto p-24 rounded-lg text-center'>
-                <h1 className='text-3xl font-semibold'>Update Review: <span className='text-orange-600 font-bold'>title</span></h1>
+                <h1 className='text-3xl font-semibold'>Update Review: <span className='text-orange-600 font-bold'>{title ? title : 'No title'}</span></h1>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-5 my-10'>
                     <div className="form-control">
                         <label className="label">

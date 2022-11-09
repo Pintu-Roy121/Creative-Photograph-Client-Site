@@ -4,13 +4,36 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider';
 import toast from 'react-hot-toast';
+import useTitle from '../../hooks/useTitle';
+import { Oval } from 'react-loader-spinner';
 
 const Login = () => {
     const [error, setError] = useState('')
-    const { Login, GoogleLogin } = useContext(AuthContext);
+    const { Login, GoogleLogin, loading } = useContext(AuthContext);
     const navigate = useNavigate();
+    useTitle('Login')
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
+
+    if (loading) {
+        return <div className='h-32 my-24 relative'>
+            <div className='absolute left-1/2'>
+                <Oval
+                    height={40}
+                    width={40}
+                    color="#4fa94d"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={true}
+                    ariaLabel='oval-loading'
+                    secondaryColor="#4fa94d"
+                    strokeWidth={6}
+                    strokeWidthSecondary={6}
+
+                />
+            </div>
+        </div>
+    }
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -21,8 +44,8 @@ const Login = () => {
 
         Login(email, password)
             .then(result => {
-                form.reset('')
-                navigate(from, { replace: true })
+                form.reset('');
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 setError(error.message)
@@ -35,7 +58,25 @@ const Login = () => {
 
         GoogleLogin()
             .then(result => {
-                console.log(result.user);
+                if (loading) {
+                    return <div className='h-32 my-24 relative'>
+                        <div className='absolute left-1/2'>
+                            <Oval
+                                height={40}
+                                width={40}
+                                color="#4fa94d"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                                visible={true}
+                                ariaLabel='oval-loading'
+                                secondaryColor="#4fa94d"
+                                strokeWidth={6}
+                                strokeWidthSecondary={6}
+
+                            />
+                        </div>
+                    </div>
+                }
                 toast.success('Login Successful')
                 navigate(from, { replace: true })
             })

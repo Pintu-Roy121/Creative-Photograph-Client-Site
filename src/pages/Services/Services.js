@@ -10,7 +10,9 @@ const Services = () => {
     useEffect(() => {
         fetch('https://creative-photograph-server.vercel.app/services')
             .then(res => res.json())
-            .then(data => setServices(data))
+            .then(data => {
+                setServices(data)
+            })
     }, [])
 
 
