@@ -25,7 +25,7 @@ const AddService = () => {
             description
         }
 
-        fetch('https://creative-photograph-server.vercel.app/services', {
+        fetch('http://localhost:5000/services', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

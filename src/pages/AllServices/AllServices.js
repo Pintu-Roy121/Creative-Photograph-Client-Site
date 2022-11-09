@@ -11,7 +11,7 @@ const AllServices = () => {
 
 
     useEffect(() => {
-        fetch('https://creative-photograph-server.vercel.app/allservices')
+        fetch('http://localhost:5000/allservices')
             .then(res => res.json())
             .then(data => {
                 setServices(data)

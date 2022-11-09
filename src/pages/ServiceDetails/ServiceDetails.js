@@ -14,7 +14,7 @@ const ServiceDetails = () => {
     const { title, image_url, price, rating, description, _id } = useLoaderData();
 
     useEffect(() => {
-        fetch(`https://creative-photograph-server.vercel.app/reviews/${_id}`)
+        fetch(`http://localhost:5000/reviews/${_id}`)
             .then(res => res.json())
             .then(data => {
                 setReviews(data);

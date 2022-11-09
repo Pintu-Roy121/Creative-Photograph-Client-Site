@@ -1,13 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useTitle from '../../hooks/useTitle';
 import Reviews from '../Reviews/Reviews';
 
 const MyReviews = () => {
-    const { user } = useContext(AuthContext);
+    const { user, Logout } = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
     const [refresh, setRefresh] = useState(true);
+    const navigate = useNavigate()
     useTitle('My-Reviews')
 
     useEffect(() => {
@@ -16,14 +18,25 @@ const MyReviews = () => {
                 authorization: `Bearer ${localStorage.getItem('User-Token')}`
             }
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    Logout()
+                        .then(result => {
+                            navigate('/login')
+                        })
+                        .catch(error => {
+                            console.log(error)
+                        })
+                }
+                return res.json();
+            })
             .then(data => {
                 setReviews(data);
             })
-    }, [user?.email, refresh])
+    }, [user?.email, refresh, Logout, navigate])
 
     const handleDelete = (id) => {
-        fetch(`https://creative-photograph-server-pintu-roy121.vercel.app/reviews/${id}`, {
+        fetch(`http://localhost:5000/reviews/${id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())

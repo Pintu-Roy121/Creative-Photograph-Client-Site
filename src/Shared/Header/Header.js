@@ -14,7 +14,8 @@ const Header = () => {
         Logout()
             .then(result => {
                 toast.success('Log out Successful')
-                navigate('/login')
+                localStorage.removeItem('User-Token');
+                navigate('/login');
             })
             .catch(error => console.log(error.message))
 
