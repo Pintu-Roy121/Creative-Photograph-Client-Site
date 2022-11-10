@@ -10,6 +10,7 @@ import ServiceDetails from "../pages/ServiceDetails/ServiceDetails";
 import SignUp from "../pages/SignUp/SignUp";
 import UpdateReview from "../pages/UpdateReview/UpdateReview";
 import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
+import PageNotFound from "../Shared/PageNotFound/PageNotFound";
 
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`https://creative-photograph-server.vercel.app/review/${params.id}`)
             }
         ]
+    },
+    {
+        path: '*',
+        element: <PageNotFound />
     }
 ])
 
