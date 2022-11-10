@@ -62,8 +62,14 @@ const Header = () => {
                     {
                         user?.uid ?
                             <div className='text-sm md:text-base font-bold flex items-center gap-4'>
-                                <p className='font-semibold'>{user?.email}</p>
-                                <Link onClick={handleLogout} to='/login'>Log Out</Link>
+                                <p className='font-semibold'>
+                                    {
+                                        user?.displayName ?
+                                            user?.displayName
+                                            :
+                                            user?.email
+                                    }
+                                </p>
                                 <div className='tooltip tooltip-bottom' data-tip={user?.displayName ? user.displayName : 'No User Name'} >
                                     {
                                         user?.photoURL ?
@@ -74,6 +80,8 @@ const Header = () => {
                                             <FaUserCheck className='text-2xl cursor-pointer' />
                                     }
                                 </div>
+
+                                <Link onClick={handleLogout} to='/login'>Log Out</Link>
                             </div>
                             :
                             <div className='font-bold flex gap-4'>

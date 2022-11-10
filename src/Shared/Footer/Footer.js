@@ -11,8 +11,8 @@ const Footer = () => {
                     <p className='text-base'>Creative Photgraphy<br />Providing Professional an awesome Photo on your events</p>
                 </div>
                 <div>
-                    <span className="footer-title">Social</span>
-                    <div className="grid grid-flow-col gap-4">
+                    <span className="footer-title ">Social</span>
+                    <div className="grid grid-flow-col mt-3 gap-4">
                         <FaFacebook className='text-3xl hover:text-blue-900 duration-700 cursor-pointer' />
                         <FaTwitter className='text-3xl hover:text-info duration-700 cursor-pointer' />
                         <FaYoutube className='text-3xl hover:text-red-900 duration-700 cursor-pointer' />

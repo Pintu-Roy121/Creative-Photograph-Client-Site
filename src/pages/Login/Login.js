@@ -71,9 +71,12 @@ const Login = () => {
     }
 
 
+
+
     const googleLogin = () => {
         GoogleLogin()
             .then(result => {
+                console.log(result.user);
                 if (loading) {
                     return <div className='h-32 my-24 relative'>
                         <div className='absolute left-1/2'>
@@ -117,6 +120,9 @@ const Login = () => {
             })
 
     }
+    const handleFogotPassword = () => {
+        toast.error('Not Implemented');
+    }
 
 
     return (
@@ -137,7 +143,7 @@ const Login = () => {
                             </label>
                             <input type="password" name='password' placeholder="password" className="input input-bordered" required />
                             <label className="label">
-                                <Link to='' className="label-text-alt link link-hover">Forgot password?</Link>
+                                <Link onClick={handleFogotPassword} className="label-text-alt link link-hover">Forgot password?</Link>
                             </label>
                             <p className='text-lg font-semibold text-red-600'>{error ? error : ''}</p>
 
@@ -145,7 +151,7 @@ const Login = () => {
                         <div className="form-control mt-6 text-center flex flex-col gap-4">
                             <input className="btn btn-primary" type="submit" value={"Log in"} />
                             <p onClick={googleLogin} className='btn btn-outline btn-primary '><FcGoogle className='text-4xl' /></p>
-                            <p className='btn btn-outline btn-ghost '><FaGithub className='text-4xl' /></p>
+                            {/* <p className='btn btn-outline btn-ghost '><FaGithub className='text-4xl' /></p> */}
                         </div>
                         <p className='text-center font-semibold'>Do Not Have an Accout? <Link className='font-bold text-orange-600' to='/signup'>SignUp</Link></p>
                     </form>

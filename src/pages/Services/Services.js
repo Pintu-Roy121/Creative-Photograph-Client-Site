@@ -30,7 +30,7 @@ const Services = () => {
             </div>
             <div className='text-center'>
                 <Link to='/services'>
-                    <button className='btn btn-outline btn-primary my-10'>view All <FaArrowRight className='text-lg font-bold ml-4' /></button>
+                    <button className='btn btn-outline btn-primary my-10'>view All Services<FaArrowRight className='text-lg font-bold ml-4' /></button>
                 </Link>
             </div>
         </div>

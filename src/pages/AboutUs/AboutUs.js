@@ -20,7 +20,7 @@ const Choose = () => {
                         </h1>
                         <p className="py-6 text-lg text-justify">Photography is the art, application, and practice of creating durable images by recording light, either electronically by means of an image sensor, or chemically by means of a light-sensitive material such as photographic film.</p>
                         <Link to='/services'>
-                            <button className="btn btn-outline btn-primary mt-4">See All Services <FaArrowRight className='text-lg font-bold ml-4' /></button>
+                            <button className="btn btn-outline btn-primary mt-4">See Our Services <FaArrowRight className='text-lg font-bold ml-4' /></button>
                         </Link>
                     </div>
                 </div>

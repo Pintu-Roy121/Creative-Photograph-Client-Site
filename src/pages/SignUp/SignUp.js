@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Oval } from 'react-loader-spinner';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useTitle from '../../hooks/useTitle';
 
 const SignUp = () => {
-    const { loading, createUser } = useContext(AuthContext);
+    const { loading, createUser, updateUser } = useContext(AuthContext);
     const [error, setError] = useState('');
     const navigate = useNavigate();
     useTitle('Register')
@@ -15,7 +16,8 @@ const SignUp = () => {
         event.preventDefault();
 
         const form = event.target;
-        // const name = form.name.value;
+        const name = form.name.value;
+        const photourl = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
 
@@ -58,8 +60,23 @@ const SignUp = () => {
                         form.reset('');
                         navigate('/');
                     })
+                updateUserProfile(name, photourl);
             })
             .catch(error => setError(error.message))
+    }
+
+    const updateUserProfile = (name, photourl) => {
+        const profile = {
+            displayName: name,
+            photoURL: photourl
+        }
+        updateUser(profile)
+            .then(result => {
+                toast.success('Profile Update Successful')
+            })
+            .catch(error => {
+                console.log(error.message);
+            })
     }
 
     return (
@@ -72,7 +89,13 @@ const SignUp = () => {
                             <label className="label">
                                 <span className="label-text font-semibold">Name:</span>
                             </label>
-                            <input type="text" name='name' placeholder="Your Name" className="input input-bordered" />
+                            <input type="text" name='name' placeholder="Your Name" className="input input-bordered" required />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text font-semibold">Photourl:</span>
+                            </label>
+                            <input type="text" name='photo' placeholder="Your Name" className="input input-bordered" />
                         </div>
                         <div className="form-control">
                             <label className="label">
