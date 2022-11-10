@@ -50,23 +50,27 @@ const Login = () => {
                     email: user.email
                 }
 
-                fetch('https://creative-photograph-server.vercel.app/jwt', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json',
-                    },
-                    body: JSON.stringify(currentUser)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        localStorage.setItem('User-Token', data.token)
-                        form.reset('');
-                        navigate(from, { replace: true });
+                if (user) {
+                    fetch('https://creative-photograph-server.vercel.app/jwt', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json',
+                        },
+                        body: JSON.stringify(currentUser)
                     })
+                        .then(res => res.json())
+                        .then(data => {
+                            localStorage.setItem('User-Token', data.token)
+                            form.reset('');
+                            navigate(from, { replace: true });
+                            setError('')
+                        })
+                }
+                console.log(user);
+                setError('')
             })
             .catch(error => {
                 setError(error.message)
-                console.log(error.message)
             });
     }
 
