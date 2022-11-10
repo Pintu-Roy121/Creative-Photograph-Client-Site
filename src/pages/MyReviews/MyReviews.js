@@ -12,8 +12,12 @@ const MyReviews = () => {
     const navigate = useNavigate()
     useTitle('My-Reviews')
 
+
+    // Get the allreviews for specific user.........................
     useEffect(() => {
         fetch(`https://creative-photograph-server.vercel.app/reviews?email=${user?.email}`, {
+
+            // send JWT token.................................
             headers: {
                 authorization: `Bearer ${localStorage.getItem('User-Token')}`
             }
@@ -35,6 +39,9 @@ const MyReviews = () => {
             })
     }, [user?.email, refresh, Logout, navigate])
 
+
+
+    // Delete the review from DB for specific login user........................... 
     const handleDelete = (id) => {
         const agree = window.confirm('Do you want to Delete? ')
         if (agree) {

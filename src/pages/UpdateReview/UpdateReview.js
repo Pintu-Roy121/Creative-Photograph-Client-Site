@@ -18,25 +18,13 @@ const UpdateReview = () => {
         const rating = form.rating.value;
         const description = form.comment.value;
 
-        // set exact time of review..............
-        // let time_ob = new Date();
-        // let hours = time_ob.getHours();
-        // let minutes = time_ob.getMinutes();
-        // let seconds = time_ob.getSeconds();
-        // const time = {
-        //     hours,
-        //     minutes,
-        //     seconds
-        // }
-
         const review = {
             image,
             rating,
             description
         }
 
-        console.log(_id, review);
-
+        // update the review ....................................
         fetch(`https://creative-photograph-server.vercel.app/review/${_id}`, {
             method: 'PATCH',
             headers: {

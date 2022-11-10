@@ -21,6 +21,8 @@ const SignUp = () => {
         const email = form.email.value;
         const password = form.password.value;
 
+
+        // Create New user or Register a user.................................
         createUser(email, password)
             .then(result => {
                 if (loading) {
@@ -65,6 +67,8 @@ const SignUp = () => {
             .catch(error => setError(error.message))
     }
 
+
+    // update user Profile ..........................................
     const updateUserProfile = (name, photourl) => {
         const profile = {
             displayName: name,

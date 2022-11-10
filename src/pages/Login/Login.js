@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider';
 import toast from 'react-hot-toast';
 import useTitle from '../../hooks/useTitle';
@@ -24,6 +23,7 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
 
+        // Sign in with Email password.........................
         Login(email, password)
             .then(result => {
                 if (loading) {
@@ -72,11 +72,10 @@ const Login = () => {
 
 
 
-
+    // Signin with google ................................
     const googleLogin = () => {
         GoogleLogin()
             .then(result => {
-                console.log(result.user);
                 if (loading) {
                     return <div className='h-32 my-24 relative'>
                         <div className='absolute left-1/2'>
@@ -151,7 +150,6 @@ const Login = () => {
                         <div className="form-control mt-6 text-center flex flex-col gap-4">
                             <input className="btn btn-primary" type="submit" value={"Log in"} />
                             <p onClick={googleLogin} className='btn btn-outline btn-primary '><FcGoogle className='text-4xl' /></p>
-                            {/* <p className='btn btn-outline btn-ghost '><FaGithub className='text-4xl' /></p> */}
                         </div>
                         <p className='text-center font-semibold'>Do Not Have an Accout? <Link className='font-bold text-orange-600' to='/signup'>SignUp</Link></p>
                     </form>

@@ -13,6 +13,7 @@ const ServiceDetails = () => {
 
     const { title, image_url, price, rating, description, _id } = useLoaderData();
 
+    // get specific service details................
     useEffect(() => {
         fetch(`https://creative-photograph-server.vercel.app/reviews/${_id}`)
             .then(res => res.json())

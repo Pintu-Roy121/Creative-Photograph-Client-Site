@@ -36,7 +36,7 @@ const AddService = () => {
             description,
             time
         }
-
+        // post a service for to the  Mongodb...................................
         fetch('https://creative-photograph-server.vercel.app/services', {
             method: 'POST',
             headers: {
@@ -54,10 +54,10 @@ const AddService = () => {
             });
 
 
-        console.log(service);
-
-
     }
+
+
+
 
     return (
         <div className='my-14'>

@@ -10,6 +10,7 @@ const AllServices = () => {
     useTitle('Services');
 
 
+    // get all services to show .................................
     useEffect(() => {
         fetch('https://creative-photograph-server.vercel.app/allservices')
             .then(res => res.json())
@@ -18,6 +19,7 @@ const AllServices = () => {
             })
     }, [])
 
+    // user Spinner................................
     if (loading) {
         return <div className='h-32 my-24 relative'>
             <div className='absolute left-1/2'>

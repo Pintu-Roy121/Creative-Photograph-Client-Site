@@ -6,7 +6,7 @@ import useTitle from '../../hooks/useTitle';
 
 const AddReview = () => {
     const { user } = useContext(AuthContext);
-    const { _id, title } = useLoaderData();
+    const { _id, title, image_url } = useLoaderData();
     const navigate = useNavigate();
     useTitle('Add-Review')
 
@@ -41,6 +41,8 @@ const AddReview = () => {
             time,
             description
         }
+
+        // post a Review for to the  Mongodb...................................
         fetch('https://creative-photograph-server.vercel.app/reviews', {
             method: 'POST',
             headers: {
@@ -63,11 +65,27 @@ const AddReview = () => {
     return (
         <div className='my-14'>
             <form onSubmit={handleSubmit} className='bg-gray-300 w-4/5 mx-auto p-24 rounded-lg text-center'>
-                <h1 className='text-3xl font-semibold'>Add Review: <span className='text-orange-600 font-bold'>{title}</span></h1>
+                <img className='w-full mx-autor rounded-xl' src={image_url} alt="" />
+                <h1 className='text-3xl font-semibold mt-4 underline'>Add Review For: <span className='text-orange-600 font-bold'>{title}</span></h1>
                 <div className='flex flex-col gap-5 my-10'>
-                    <input className="input input-bordered input-info w-full" type="text" name='name' placeholder='Your Name' required />
-                    <input className="input input-bordered input-info w-full" type="text" name='image' placeholder='Add your image URL' />
-                    <input className="input input-bordered input-info w-full" type="number" name='rating' placeholder='Give you rating out of 5' />
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text font-semibold">Your Name:</span>
+                        </label>
+                        <input className="input input-bordered input-info w-full" type="text" name='name' placeholder='Your Name' required />
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text font-semibold">Your Photo Url:</span>
+                        </label>
+                        <input className="input input-bordered input-info w-full" type="text" name='image' placeholder='Add your image URL' />
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text font-semibold">Rating:</span>
+                        </label>
+                        <input className="input input-bordered input-info w-full" type="number" name='rating' placeholder='Give you rating out of 5' />
+                    </div>
                 </div>
                 <textarea className="textarea textarea-info w-full h-40" name='comment' placeholder="Comment Here"></textarea>
                 <button className="btn btn-info my-8">Submit Review</button>

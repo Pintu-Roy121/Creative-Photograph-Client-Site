@@ -7,6 +7,8 @@ import SingleService from '../SingleService/SingleService';
 const Services = () => {
     const [services, setServices] = useState([]);
 
+
+    // get limit of service form server........................
     useEffect(() => {
         fetch('https://creative-photograph-server.vercel.app/services')
             .then(res => res.json())

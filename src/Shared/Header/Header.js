@@ -10,6 +10,7 @@ const Header = () => {
     const navigate = useNavigate()
 
 
+    // Log out section...............................
     const handleLogout = () => {
         Logout()
             .then(result => {
